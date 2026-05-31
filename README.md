@@ -36,8 +36,8 @@ Telegram-бот, который помогает формировать прив
 1. **Клонировать репозиторий**
 
    ```bash
-   git clone https://github.com/Yufilchakov/habit-llm-bot.git
-   cd habit-llm-bot
+   git clone https://github.com/Yufilchakov/habit-bot.git
+   cd habit-bot
 
 ### Установить зависимости через Poetry
 
@@ -47,17 +47,24 @@ poetry install (будут установлены и основные, и dev-п
 
 ## Обязательные переменные:
 
-TELEGRAM_TOKEN=ваш_токен_бота
+TELEGRAM_TOKEN=ваш_токен_бота 
+
 YANDEXGPT_FOLDER_ID=ваш_folder_id
+
 YANDEXGPT_API_KEY=ваш_api_ключ
+
 REDIS_URL=redis://localhost:6379 
+
 LLM_MODEL=yandexgpt-lite
+
 LLM_TEMPERATURE=0.7
+
 LLM_MAX_TOKENS=200
 
 Запустить Redis (если нужен)
-docker-compose up -d
-или используйте make docker-up. Если не нужен – бот будет использовать in-memory хранилище (все данные потеряются при перезапуске).
+docker-compose up -d или используйте make docker-up. 
+
+Если не нужен – бот будет использовать in-memory хранилище (все данные потеряются при перезапуске).
 
 Запустить сервер разработки
 
@@ -127,11 +134,11 @@ FastAPI требует адаптера (a2wsgi), который иногда р
 ## Docker
 Соберите образ:
 
-docker build -t habit-llm-bot .
+docker build -t habit-bot .
 
 ### Запустите контейнер:
 
-docker run -p 8000:8000 --env-file .env habit-llm-bot
+docker run -p 8000:8000 --env-file .env habit-bot
 Результаты пилотного тестирования
 Снижение оттока пользователей на 30–40% за 2 недели (по сравнению с контрольной группой без LLM).
 
