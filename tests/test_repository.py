@@ -1,10 +1,12 @@
 from src.models.habit import UserHabitHistory
 
+
 def test_get_empty_history(habit_repo):
     """Проверяет, что для несуществующего пользователя возвращается пустая история."""
     history = habit_repo.get_user_history("nonexistent")
     assert history.habits == []
     assert len(history.last_7_days) == 0
+
 
 def test_add_completion(habit_repo):
     """Проверяет добавление выполнения привычки: обновляются habits и last_7_days."""
@@ -13,6 +15,7 @@ def test_add_completion(habit_repo):
     assert "бегать" in history.habits
     assert len(history.last_7_days) == 1
     assert history.last_7_days[0].completed is True
+
 
 def test_trim_to_7_days(habit_repo):
     """Проверяет, что список last_7_days не превышает 7 записей (обрезается до 7)."""
