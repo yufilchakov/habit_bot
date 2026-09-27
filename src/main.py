@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Habit LLM Bot")
 
+
 @app.post("/webhook")
 async def telegram_webhook(
     request: Request,
@@ -33,6 +34,7 @@ async def telegram_webhook(
     background_tasks.add_task(process_and_reply, handler, chat_id, user_id, text)
     return Response(status_code=200)
 
+
 async def process_and_reply(handler: MessageHandler, chat_id: int, user_id: str, text: str):
     """Фоновая задача: обработка сообщения и отправка ответа."""
     try:
@@ -42,14 +44,17 @@ async def process_and_reply(handler: MessageHandler, chat_id: int, user_id: str,
         logger.error(f"Error processing message from {user_id}: {e}")
         await send_telegram_message(chat_id, "⚠️ Произошла ошибка. Попробуй позже.")
 
+
 @app.get("/health")
 async def health() -> dict:
     """Проверка работоспособности сервиса."""
     return {"status": "ok"}
 
+
 @app.on_event("startup")
 async def startup_event():
     logger.info("FastAPI приложение запущено. In-memory репозиторий активен.")
+
 
 @app.on_event("shutdown")
 async def shutdown_event():
