@@ -1,6 +1,7 @@
 from src.services.llm_service import LLMService
 from src.repositories.habit_repository import HabitRepository
 
+
 class MessageHandler:
     """Центральный класс бизнес-логики бота."""
     def __init__(self, llm_service: LLMService, habit_repo: HabitRepository):

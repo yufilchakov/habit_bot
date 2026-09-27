@@ -1,5 +1,6 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import BaseSettings, SettingsConfigDict
 from pydantic import Field
+
 
 class Settings(BaseSettings):
     """Настройки приложения, загружаемые из переменных окружения."""
@@ -15,5 +16,6 @@ class Settings(BaseSettings):
         env_file=".env",
         extra="ignore"
     )
-    
+
+
 settings = Settings()
